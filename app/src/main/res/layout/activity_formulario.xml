@@ -11,29 +11,40 @@
         <EditText
             android:hint="Nome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/formulario_nome"/>
 
         <EditText
             android:hint="Endereco"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/formulario_endereco"/>
 
         <EditText
             android:hint="Telefone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/formulario_telefone"/>
 
         <EditText
             android:hint="Site"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/formulario_site"/>
 
         <RatingBar
             android:numStars="5"
             android:max="10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:id="@+id/formulario_nota"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:id="@+id/formulario_salvar" />
 
 
     </LinearLayout>
