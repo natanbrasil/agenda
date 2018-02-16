@@ -63,10 +63,14 @@ public class ListaAlunosActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
               AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
               Aluno aluno = (Aluno)listaAlunos.getItemAtPosition(info.position);
-              Toast.makeText(ListaAlunosActivity.this,"Deletar Aluno " + aluno.getNome(), Toast.LENGTH_SHORT).show();
+
+              AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
+              dao.deleta(aluno);
+              dao.close();
+              carregaLista();
               return false;
+
           }
       });
     }
-
 }
