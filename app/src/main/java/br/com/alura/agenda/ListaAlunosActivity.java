@@ -3,10 +3,14 @@ package br.com.alura.agenda;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -15,12 +19,14 @@ import br.com.alura.agenda.modelo.Aluno;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
+    private ListView listaAlunos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
 
-
+        listaAlunos = (ListView) findViewById(R.id.lista_alunos);
         Button novoAluno = (Button) findViewById(R.id.novoAluno);
         novoAluno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +35,9 @@ public class ListaAlunosActivity extends AppCompatActivity {
                 startActivity(intentVaiProFormulario);
             }
         });
+
+        registerForContextMenu(listaAlunos);
+
     }
 
     private void carregaLista() {
@@ -36,8 +45,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
         List<Aluno> alunos = dao.buscaAlunos();
         dao.close();
 
-
-        ListView listaAlunos = (ListView) findViewById(R.id.lista_alunos);
         ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
         listaAlunos.setAdapter(adapter);
     }
@@ -47,4 +54,19 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onResume();
         carregaLista();
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+      MenuItem deletar = menu.add("Deletar");
+      deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+          @Override
+            public boolean onMenuItemClick(MenuItem item) {
+              AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+              Aluno aluno = (Aluno)listaAlunos.getItemAtPosition(info.position);
+              Toast.makeText(ListaAlunosActivity.this,"Deletar Aluno " + aluno.getNome(), Toast.LENGTH_SHORT).show();
+              return false;
+          }
+      });
+    }
+
 }
