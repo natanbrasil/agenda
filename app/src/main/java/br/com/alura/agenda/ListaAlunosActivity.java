@@ -27,6 +27,15 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_alunos);
 
         listaAlunos = (ListView) findViewById(R.id.lista_alunos);
+
+        listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
+                Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(position);
+
+            }
+        });
+
         Button novoAluno = (Button) findViewById(R.id.novoAluno);
         novoAluno.setOnClickListener(new View.OnClickListener() {
             @Override
