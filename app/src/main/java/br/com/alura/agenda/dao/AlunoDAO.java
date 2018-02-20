@@ -77,4 +77,13 @@ public class AlunoDAO extends SQLiteOpenHelper {
         String[] params = {String.valueOf(aluno.getId())};
         db.delete("Alunos", "id = ?", params);
     }
+
+    public void altera(Aluno aluno) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues dados = pegaDadosDoAluno(aluno);
+
+        String[] params = {String.valueOf(aluno.getId())};
+        db.update("Alunos", dados, "id = ?", params );
+    }
 }
