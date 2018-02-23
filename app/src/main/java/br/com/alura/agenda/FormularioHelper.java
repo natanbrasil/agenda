@@ -1,5 +1,6 @@
 package br.com.alura.agenda;
 
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 
@@ -10,6 +11,8 @@ import br.com.alura.agenda.modelo.Aluno;
  */
 
 class FormularioHelper {
+
+    Button botao;
 
     private final EditText campoNome;
     private final EditText campoEndereco;
@@ -49,3 +52,4 @@ class FormularioHelper {
 
     }
 }
+
