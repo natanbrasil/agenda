@@ -63,21 +63,14 @@ public class FormularioActivity extends AppCompatActivity {
         });
     }
 
-
-
             @Override
             protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             if(resultCode == Activity.RESULT_OK){
             if (requestCode == CODIGO_CAMERA) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-                    Bitmap bitmapReduzido = bitmap.createScaledBitmap(bitmap, 150, 150, true);
-                    ImageView campoFoto = (ImageView) findViewById(R.id.formulario_foto);
-                    campoFoto.setImageBitmap(bitmapReduzido);
-                    campoFoto.setTag(caminhoFoto);
-                }
+                   helper.carregaImagem(caminhoFoto);
             }
+        }
     }
-
 
 
     @Override
