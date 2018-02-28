@@ -1,7 +1,10 @@
 package br.com.alura.agenda;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 
 import br.com.alura.agenda.modelo.Aluno;
@@ -20,6 +23,7 @@ class FormularioHelper {
     private final EditText campoSite;
     private final RatingBar campoNota;
     private Aluno aluno;
+    private ImageView campoFoto;
 
 
     public FormularioHelper(FormularioActivity activity) {
@@ -49,7 +53,15 @@ class FormularioHelper {
         campoSite.setText(aluno.getSite());
         campoNota.setProgress(aluno.getNota().intValue());
         this.aluno = aluno;
+    }
 
+    public void carregaImagem(String caminhoFoto) {
+        if(caminhoFoto != null){
+            Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
+            Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+            campoFoto.setImageBitmap(bitmapReduzido);
+            campoFoto.setScaleType(ImageView.ScaleType.FIT_XY);
+            campoFoto.setTag(caminhoFoto);
+        }
     }
 }
-
